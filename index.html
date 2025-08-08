@@ -31,17 +31,9 @@
             text-align: left;
         }
 
-        .logo-box {
-            background: #0a3b3a;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 3px;
-            font-family: Arial, sans-serif;
-            font-size: 8px;
-            font-weight: bold;
-            line-height: 1.2;
-            text-align: center;
-            width: 80px;
+        .logo-svg {
+            width: 120px;
+            height: 30px;
         }
 
         .content {
@@ -52,16 +44,15 @@
             z-index: 10;
         }
 
-        .watermark-text {
+        .watermark-logo {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            opacity: 0.1;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            opacity: 0.08;
             z-index: 1;
-            font-size: 48px;
-            font-weight: bold;
-            color: #0a3b3a;
+            width: 200px;
+            height: 100px;
             pointer-events: none;
             display: none;
         }
@@ -140,7 +131,13 @@
                 
                 <div id="emailPreview" class="email-template border">
                     <!-- Watermark -->
-                    <div id="watermark" class="watermark-text">POLE STAR DEFENSE</div>
+                    <svg id="watermark" class="watermark-logo" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Large watermark version -->
+                        <circle cx="25" cy="50" r="18" fill="#2d5a4f" stroke="#1a3530" stroke-width="2"/>
+                        <polygon points="25,32 28,42 38,42 30,48 33,58 25,52 17,58 20,48 12,42 22,42" fill="white"/>
+                        <text x="50" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2d5a4f">POLE STAR</text>
+                        <text x="50" y="65" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a365d">DEFENSE</text>
+                    </svg>
                     
                     <!-- Header -->
                     <div class="header">
@@ -149,9 +146,17 @@
                             450 8th Ave SE<br>
                             St. Petersburg, FL 33701 USA
                         </div>
-                        <div class="logo-box">
-                            POLE STAR<br>DEFENSE
-                        </div>
+                        <svg class="logo-svg" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Star/compass icon -->
+                            <circle cx="12" cy="15" r="8" fill="#2d5a4f" stroke="#1a3530" stroke-width="1"/>
+                            <polygon points="12,7 13.5,11 18,11 14.5,14 16,19 12,16 8,19 9.5,14 6,11 10.5,11" fill="white"/>
+                            
+                            <!-- POLE STAR text -->
+                            <text x="26" y="11" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#2d5a4f">POLE STAR</text>
+                            
+                            <!-- DEFENSE text -->
+                            <text x="26" y="22" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#1a365d">DEFENSE</text>
+                        </svg>
                     </div>
 
                     <!-- Title -->

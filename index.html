@@ -18,79 +18,81 @@
             position: relative;
         }
         
-        .email-watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.1;
-            z-index: 1;
-            width: 200px;
-            pointer-events: none;
-        }
-        
         .header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 30px;
-            border-bottom: 1px solid #e5e5e5;
-            padding-bottom: 15px;
         }
-        
+
         .address {
-            text-align: right;
-            font-size: 12px;
+            font-size: 10px;
             line-height: 1.4;
+            text-align: left;
         }
-        
+
+        .logo-box {
+            background: #0a3b3a;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 3px;
+            font-family: Arial, sans-serif;
+            font-size: 8px;
+            font-weight: bold;
+            line-height: 1.2;
+            text-align: center;
+            width: 80px;
+        }
+
         .content {
-            margin-bottom: 40px;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 10;
         }
-        
+
+        .watermark-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            opacity: 0.1;
+            z-index: 1;
+            font-size: 48px;
+            font-weight: bold;
+            color: #0a3b3a;
+            pointer-events: none;
+            display: none;
+        }
+
         @media print {
-            .no-print { display: none !important; }
-            body { margin: 0; }
-            .email-template { 
-                box-shadow: none; 
-                margin: 0; 
-                padding: 0.5in;
+            .no-print {
+                display: none !important;
+            }
+            
+            .email-template {
+                width: 8.5in;
+                height: 11in;
+                max-width: none;
+                margin: 0;
+                padding: 1in;
+                box-sizing: border-box;
             }
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <!-- Header -->
-    <header class="bg-white shadow-sm border-b no-print">
-        <div class="max-w-7xl mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-lg">P</span>
-                    </div>
-                    <div>
-                        <h1 class="text-xl font-bold text-gray-900">Pole Star Defense</h1>
-                        <p class="text-sm text-gray-500">Email Template Generator</p>
-                    </div>
-                </div>
-                <div class="flex space-x-4">
-                    <button onclick="exportEmail()" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg">
-                        Export Email
-                    </button>
-                    <button onclick="window.print()" class="border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg">
-                        Print
-                    </button>
-                </div>
-            </div>
+<body class="bg-gray-100 min-h-screen">
+    <main class="container mx-auto p-6">
+        <div class="text-center mb-8 no-print">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Pole Star Defense</h1>
+            <p class="text-lg text-gray-600">Professional Email Template Generator</p>
         </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Form -->
-            <div class="bg-white rounded-lg shadow p-6 no-print">
-                <h2 class="text-xl font-semibold mb-6">Email Template Form</h2>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-semibold mb-6 no-print">Email Details</h2>
                 
                 <div class="space-y-4">
                     <div>
@@ -138,17 +140,17 @@
                 
                 <div id="emailPreview" class="email-template border">
                     <!-- Watermark -->
-                    <img id="watermark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOYAAAAtCAYAAAC6RRfMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABpvSURBVHhe7V0LmFxFlR7ATN+qO5OHiPgAwkIwOJjM9K26dep2TDKJkhhFEJCIL8hM90wIkYfgp7u6migIGDLTnReviKIuCptdXYnoAhFhRZCVYKIQ0PAIFE8CCQz3TN5XL9T95Hu6tsz3ZPJgKb/7zvfQG51Vd269dfj1DmnaiiH9vJFJKkNbfVxeXpdk2gYLeXba4YJvV1tx/anO+b2dqXu7O1O/S2X7nD3ret0e9PJXdl02/r+dOq6XerkzO3fnztG/20loJa08B0oEykqZMrgTkJPc8BYuPJwEuenUzvRWdyGFQoTKdOWn60ZP97Qixk2SEnqm+AkyuT51HaWGzasJgweogzWEiYfMhisNpiTMTh8KibEv9RMmBXTs4jAYaMAJqs+o7/TgYoNnfgdsQy90EgccwwxLfsz6purPESSWnIOEeIYPWmliPGWE/D77M+7DLGhrY45Z5rc+UD9yfaRep4KlEt3aCL2EC7+RLlcUMfYyXq+5SKbbj+hL9PR1ZdO9bor5rq5dLI3l0luy6WT27PdyZy7/ALXvf5C11021+3LpNzd6dSDvYvnnDdUghJLXEEZ7KG241KRcCmHG/U0wwHC4S4TmiParUKxHZcwsb2uqekovYwDxjGSECY+Tm35E8KgV7WJXr4mBocdxJY/NBnMGJCgs2cfQbn8ajl5Viyi2SVcXoFl6MVGwRscZF9+XUyRcEncvrqGsVF6+kpgWvIzlMnXh/SeTO4lltxAmfO1eoCTCjKmHDP0Mw0662CC6QLBRmLwGLXEaQUZl4HXu5Jn9GWSz/SnO17rS3fck063d/ek2z/fm0md25dJnZvtTl2U7Wpb35sudMe7+8AQ=" alt="Watermark" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 1; width: 200px; pointer-events: none;">
+                    <div id="watermark" class="watermark-text">POLE STAR DEFENSE</div>
                     
                     <!-- Header -->
                     <div class="header">
-                        <div>
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOYAAAAtCAYAAAC6RRfMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABpvSURBVHhe7V0LmFxFlR7ATN+qO5OHiPgAwkIwOJjM9K26der2TDKJkhhFEJCIL8hM90wIkYfgp7u6migIGDLTnReviKIuCptdXYnoAhFhRZCVYKIQ0PAIFE8CCQz3TN5XL9T95Hu6tsz3ZPJgKb/7zvfQG51Vd269dfj1DmnaiiH9vJFJKkNbfVxeXpdk2gYLeXba4YJvV1tx/anO+b2dqXu7O1O/S2X7nD3ret0e9PJXdl02/r+dOq6XerkzO3fnztG/20loJa08B0oEykqZMrgTkJPc8BYuPJwEuenUzvRWdyGFQoTKdOWn60ZP97Qixk2SEnqm+AkyuT51HaWGzasJgweogzWEiYfMhisNpiTMTh8KibEv9RMmBXTs4jAYaMAJqs+o7/TgYoNnfgdsQy90EgccwwxLfsz6purPESSWnIOEeIYPWmliPGWE/D77M+7DLGhrY45Z5rc+UD9yfaRep4KlEt3aCL2EC7+RLlcUMfYyXq+5SKbbj+hL9PR1ZdO9bor5rq5dLI3l0luy6WT27PdyZy7/ALXvf5C11021+3LpNzd6dSDvYvnnDdUghJLXEEZ7KG241KRcCmHG/U0wwHC4S4TmiParUKxHZcwsb2uqekovYwDxjGSECY+Tm35E8KgV7WJXr4mBocdxJY/NBnMGJCgs2cfQbn8ajl5Viyi2SVcXoFl6MVGwRscZF9+XUyRcEncvrqGsVF6+kpgWvIzlMnXh/SeTO4lltxAmfO1eoCTCjKmHDP0Mw0662CC6QLBRmLwGLXEaQUZl4HXu5Jn9GWSz/SnO17rS3fck063d/ek2z/fm0md25dJnZvtTl2U7Wpb35sudMe7+8AQ==" alt="Pole Star Defense" style="height: 25px;">
-                        </div>
                         <div class="address">
                             <strong>Pole Star Defense</strong><br>
                             450 8th Ave SE<br>
                             St. Petersburg, FL 33701 USA
+                        </div>
+                        <div class="logo-box">
+                            POLE STAR<br>DEFENSE
                         </div>
                     </div>
 
@@ -216,6 +218,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- Export Button -->
+        <div class="text-center mt-8 no-print">
+            <button onclick="exportToPDF()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-200">
+                Export as PDF
+            </button>
+        </div>
     </main>
 
     <script>
@@ -250,58 +259,31 @@
                 date, clientName, subject, content, includeWatermark
             }));
         }
-        
-        function exportEmail() {
-            const emailElement = document.getElementById('emailPreview');
-            const emailContent = emailElement.outerHTML;
-            const clientName = document.getElementById('clientName').value || 'template';
-            const date = document.getElementById('emailDate').value || 'today';
-            
-            const fullHtml = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Pole Star Defense Email</title>
-    <style>
-        @page { size: letter; margin: 1in; }
-        body { margin: 0; font-family: Arial, sans-serif; }
-        .email-template { font-size: 14px; line-height: 1.5; }
-        .header { display: flex; justify-content: space-between; margin-bottom: 30px; border-bottom: 1px solid #e5e5e5; padding-bottom: 15px; }
-        .address { text-align: right; font-size: 12px; }
-        .content { margin-bottom: 40px; }
-    </style>
-</head>
-<body>
-    ${emailContent}
-</body>
-</html>`;
-            
-            const blob = new Blob([fullHtml], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `email_${clientName}_${date}.html`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-        
-        // Load saved data on page load
-        window.onload = function() {
-            const saved = localStorage.getItem('psd-email-data');
-            if (saved) {
-                const data = JSON.parse(saved);
-                document.getElementById('emailDate').value = data.date || '';
-                document.getElementById('clientName').value = data.clientName || '';
-                document.getElementById('subject').value = data.subject || '';
-                document.getElementById('content').value = data.content || '';
-                document.getElementById('includeWatermark').checked = data.includeWatermark || false;
-                updatePreview();
-            } else {
-                updatePreview();
+
+        // Load saved data
+        window.addEventListener('load', function() {
+            try {
+                const saved = localStorage.getItem('psd-email-data');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    if (data.date) document.getElementById('emailDate').value = data.date;
+                    if (data.clientName) document.getElementById('clientName').value = data.clientName;
+                    if (data.subject) document.getElementById('subject').value = data.subject;
+                    if (data.content) document.getElementById('content').value = data.content;
+                    if (data.includeWatermark) document.getElementById('includeWatermark').checked = data.includeWatermark;
+                    updatePreview();
+                }
+            } catch (e) {
+                // Ignore localStorage errors
             }
-        };
+        });
+
+        function exportToPDF() {
+            window.print();
+        }
+
+        // Initial update
+        updatePreview();
     </script>
 </body>
 </html>

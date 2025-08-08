@@ -138,7 +138,7 @@
                 
                 <div id="emailPreview" class="email-template border">
                     <!-- Watermark -->
-                    <img id="watermark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOYAAAAtCAYAAAC6RRfMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABpvSURBVHhe7V0LmFxFlR7ATN+qO5OHiPgAwkIwOJjM9K26der2TDKJkhhFEJCIL8hM90wIkYfgp7u6migIGDLTnReviKIuCptdXYnoAhFhRZCVYKIQ0PAIFE8CCQz3TN5XL9T95Hu6tsz3ZPJgKb/7zvfQG51Vd269dfj1DmnaiiH9vJFJKkNbfVxeXpdk2gYLeXba4YJvV1tx/anO+b2dqXu7O1O/S2X7nD3ret0e9PJXdl02/r+dOq6XerkzO3fnztG/20loJa08B0oEykqZMrgTkJPc8BYuPJwEuenUzvRWdyGFQoTKdOWn60ZP97Qixk2SEnqm+AkyuT51HaWGzasJgweogzWEiYfMhisNpiTMTh8KibEv9RMmBXTs4jAYaMAJqs+o7/TgYoNnfgdsQy90EgccwwxLfsz6purPESSWnIOEeIYPWmliPGWE/D77M+7DLGhrY45Z5rc+UD9yfaRep4KlEt3aCL2EC7+RLlcUMfYyXq+5SKbbj+hL9PR1ZdO9bor5rq5dLI3l0luy6WT27PdyZy7/ALXvf5C11021+3LpNzd6dSDvYvnnDdUghJLXEEZ7KG241KRcCmHG/U0wwHC4S4TmiParUKxHZcwsb2uqekovYwDxjGSECY+Tm35E8KgV7WJXr4mBocdxJY/NBnMGJCgs2cfQbn8ajl5Viyi2SVcXoFl6MVGwRscZF9+XUyRcEncvrqGsVF6+kpgWvIzlMnXh/SeTO4lltxAmfO1eoCTCjKmHDP0Mw0662CC6QLBRmLwGLXEaQUZl4HXu5Jn9GWSz/SnO17rS3fck063d/ek2z/fm0md25dJnZvtTl2U7Wpb35sudMe7+8AQ==" alt="Watermark" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; z-index: -1; width: 200px;">
+                    <img id="watermark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOYAAAAtCAYAAAC6RRfMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABpvSURBVHhe7V0LmFxFlR7ATN+qO5OHiPgAwkIwOJjM9K26dep2TDKJkhhFEJCIL8hM90wIkYfgp7u6migIGDLTnReviKIuCptdXYnoAhFhRZCVYKIQ0PAIFE8CCQz3TN5XL9T95Hu6tsz3ZPJgKb/7zvfQG51Vd269dfj1DmnaiiH9vJFJKkNbfVxeXpdk2gYLeXba4YJvV1tx/anO+b2dqXu7O1O/S2X7nD3ret0e9PJXdl02/r+dOq6XerkzO3fnztG/20loJa08B0oEykqZMrgTkJPc8BYuPJwEuenUzvRWdyGFQoTKdOWn60ZP97Qixk2SEnqm+AkyuT51HaWGzasJgweogzWEiYfMhisNpiTMTh8KibEv9RMmBXTs4jAYaMAJqs+o7/TgYoNnfgdsQy90EgccwwxLfsz6purPESSWnIOEeIYPWmliPGWE/D77M+7DLGhrY45Z5rc+UD9yfaRep4KlEt3aCL2EC7+RLlcUMfYyXq+5SKbbj+hL9PR1ZdO9bor5rq5dLI3l0luy6WT27PdyZy7/ALXvf5C11021+3LpNzd6dSDvYvnnDdUghJLXEEZ7KG241KRcCmHG/U0wwHC4S4TmiParUKxHZcwsb2uqekovYwDxjGSECY+Tm35E8KgV7WJXr4mBocdxJY/NBnMGJCgs2cfQbn8ajl5Viyi2SVcXoFl6MVGwRscZF9+XUyRcEncvrqGsVF6+kpgWvIzlMnXh/SeTO4lltxAmfO1eoCTCjKmHDP0Mw0662CC6QLBRmLwGLXEaQUZl4HXu5Jn9GWSz/SnO17rS3fck063d/ek2z/fm0md25dJnZvtTl2U7Wpb35sudMe7+8AQ=" alt="Watermark" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 1; width: 200px; pointer-events: none;">
                     
                     <!-- Header -->
                     <div class="header">
@@ -185,30 +185,32 @@
                         </p>
                     </div>
                     
-                    <!-- Footer Info Box -->
-                    <div style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                            <h3 style="margin: 0; font-size: 16px; font-weight: 600; color: #0a3b3a;">Contact Information</h3>
+                    <!-- Bottom Contact Footer -->
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background-color: #0a3b3a; color: white; font-size: 10px; padding: 8px;">
+                        <!-- Disclaimer -->
+                        <div style="text-align: center; margin-bottom: 8px; font-size: 9px;">
+                            This communication is confidential and intended solely for the recipient. © Pole Star Defense
                         </div>
                         
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 13px; color: #374151;">
-                            <div>
-                                <p style="margin: 0 0 8px 0;"><strong>Operations Center:</strong></p>
-                                <p style="margin: 0 0 4px 0;">Email: <a href="mailto:Ops.Center@PoleStarDefense.com" style="color: #0066cc;">Ops.Center@PoleStarDefense.com</a></p>
-                                <p style="margin: 0 0 4px 0;">Phone: (555) 123-POLE</p>
-                                <p style="margin: 0;">Available 24/7 for critical issues</p>
-                            </div>
-                            
-                            <div>
-                                <p style="margin: 0 0 8px 0;"><strong>Business Hours:</strong></p>
-                                <p style="margin: 0 0 4px 0;">Monday - Friday: 8:00 AM - 6:00 PM EST</p>
-                                <p style="margin: 0 0 4px 0;">Emergency Support: 24/7</p>
-                                <p style="margin: 0;">Response Time: Within 2 hours</p>
-                            </div>
-                        </div>
+                        <!-- Contact Table -->
+                        <table style="width: 100%; border-collapse: collapse; color: white;">
+                            <tr>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">UK +44 20 7313 7400</td>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">Hong Kong +852 2520 0951</td>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">Singapore +44 207 313 7403</td>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">Info.us@polestardefense.com</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">USA +1 727 610 9501</td>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">Panama +507 835 5150</td>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;"></td>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">www.polestardefense.com</td>
+                            </tr>
+                        </table>
                         
-                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #6b7280; text-align: center;">
-                            <p style="margin: 0;">This communication contains confidential and proprietary information. Please handle accordingly.</p>
+                        <!-- Registration Info -->
+                        <div style="text-align: center; margin-top: 4px; font-size: 8px;">
+                            Registered in Saint Petersburg, FL (Corp)
                         </div>
                     </div>
                 </div>
@@ -236,7 +238,12 @@
             document.getElementById('previewType').textContent = document.getElementById('emailType').value;
             
             // Show/hide watermark
-            document.getElementById('watermark').style.display = includeWatermark ? 'block' : 'none';
+            const watermark = document.getElementById('watermark');
+            if (includeWatermark) {
+                watermark.style.display = 'block';
+            } else {
+                watermark.style.display = 'none';
+            }
             
             // Save to localStorage
             localStorage.setItem('psd-email-data', JSON.stringify({

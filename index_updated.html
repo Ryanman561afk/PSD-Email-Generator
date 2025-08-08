@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pole Star Defense - Email Template Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .email-template {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            color: black;
+            position: relative;
+        }
+        
+        .email-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+            z-index: 1;
+            width: 200px;
+            pointer-events: none;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .address {
+            font-size: 10px;
+            line-height: 1.4;
+            text-align: right;
+        }
+
+        .content {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            
+            .email-template {
+                width: 8.5in;
+                height: 11in;
+                max-width: none;
+                margin: 0;
+                padding: 1in;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <main class="container mx-auto p-6">
+        <div class="text-center mb-8 no-print">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Pole Star Defense</h1>
+            <p class="text-lg text-gray-600">Professional Email Template Generator</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Form -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-semibold mb-6 no-print">Email Details</h2>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                        <input type="date" id="emailDate" class="w-full border border-gray-300 rounded-md px-3 py-2" onchange="updatePreview()">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Client Name</label>
+                        <input type="text" id="clientName" placeholder="Enter client name" class="w-full border border-gray-300 rounded-md px-3 py-2" onchange="updatePreview()">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                        <input type="text" id="subject" placeholder="Enter email subject" class="w-full border border-gray-300 rounded-md px-3 py-2" onchange="updatePreview()">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                        <select id="emailType" class="w-full border border-gray-300 rounded-md px-3 py-2" onchange="updatePreview()">
+                            <option>System Issue / Informational Report</option>
+                            <option>Maintenance Notification</option>
+                            <option>Security Update</option>
+                            <option>General Communication</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Content</label>
+                        <textarea id="content" rows="6" placeholder="Enter your message content..." class="w-full border border-gray-300 rounded-md px-3 py-2" onchange="updatePreview()"></textarea>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="includeWatermark" class="mr-2" onchange="updatePreview()">
+                            <span class="text-sm text-gray-700">Include watermark</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-semibold mb-6 no-print">Live Preview</h2>
+                
+                <div id="emailPreview" class="email-template border">
+                    <!-- Watermark -->
+                    <img id="watermark" src="logo.png" alt="Watermark" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 1; width: 200px; pointer-events: none;" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOYAAAAtCAYAAAC6RRfMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABpvSURBVHhe7V0LmFxFlR7ATN+qO5OHiPgAwkIwOJjM9K26dep2TDKJkhhFEJCIL8hM90wIkYfgp7u6migIGDLTnReviKIuCptdXYnoAhFhRZCVYKIQ0PAIFE8CCQz3TN5XL9T95Hu6tsz3ZPJgKb/7zvfQG51Vd269dfj1DmnaiiH9vJFJKkNbfVxeXpdk2gYLeXba4YJvV1tx/anO+b2dqXu7O1O/S2X7nD3ret0e9PJXdl02/r+dOq6XerkzO3fnztG/20loJa08B0oEykqZMrgTkJPc8BYuPJwEuenUzvRWdyGFQoTKdOWn60ZP97Qixk2SEnqm+AkyuT51HaWGzasJgweogzWEiYfMhisNpiTMTh8KibEv9RMmBXTs4jAYaMAJqs+o7/TgYoNnfgdsQy90EgccwwxLfsz6purPESSWnIOEeIYPWmliPGWE/D77M+7DLGhrY45Z5rc+UD9yfaRep4KlEt3aCL2EC7+RLlcUMfYyXq+5SKbbj+hL9PR1ZdO9bor5rq5dLI3l0luy6WT27PdyZy7/ALXvf5C11021+3LpNzd6dSDvYvnnDdUghJLXEEZ7KG241KRcCmHG/U0wwHC4S4TmiParUKxHZcwsb2uqekovYwDxjGSECY+Tm35E8KgV7WJXr4mBocdxJY/NBnMGJCgs2cfQbn8ajl5Viyi2SVcXoFl6MVGwRscZF9+XUyRcEncvrqGsVF6+kpgWvIzlMnXh/SeTO4lltxAmfO1eoCTCjKmHDP0Mw0662CC6QLBRmLwGLXEaQUZl4HXu5Jn9GWSz/SnO17rS3fck063d/ek2z/fm0md25dJnZvtTl2U7Wpb35sudce7+8AQ='">
+                    
+                    <!-- Header -->
+                    <div class="header">
+                        <div>
+                            <img src="logo.png" alt="Pole Star Defense" style="height: 25px;" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOYAAAAtCAYAAAC6RRfMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABpvSURBVHhe7V0LmFxFlR7ATN+qO5OHiPgAwkIwOJjM9K26dep2TDKJkhhFEJCIL8hM90wIkYfgp7u6migIGDLTnReviKIuCptdXYnoAhFhRZCVYKIQ0PAIFE8CCQz3TN5XL9T95Hu6tsz3ZPJgKb/7zvfQG51Vd269dfj1DmnaiiH9vJFJKkNbfVxeXpdk2gYLeXba4YJvV1tx/anO+b2dqXu7O1O/S2X7nD3ret0e9PJXdl02/r+dOq6XerkzO3fnztG/20loJa08B0oEykqZMrgTkJPc8BYuPJwEuenUzvRWdyGFQoTKdOWn60ZP97Qixk2SEnqm+AkyuT51HaWGzasJgweogzWEiYfMhisNpiTMTh8KibEv9RMmBXTs4jAYaMAJqs+o7/TgYoNnfgdsQy90EgccwwxLfsz6purPESSWnIOEeIYPWmliPGWE/D77M+7DLGhrY45Z5rc+UD9yfaRep4KlEt3aCL2EC7+RLlcUMfYyXq+5SKbbj+hL9PR1ZdO9bor5rq5dLI3l0luy6WT27PdyZy7/ALXvf5C11021+3LpNzd6dSDvYvnnDdUghJLXEEZ7KG241KRcCmHG/U0wwHC4S4TmiParUKxHZcwsb2uqekovYwDxjGSECY+Tm35E8KgV7WJXr4mBocdxJY/NBnMGJCgs2cfQbn8ajl5Viyi2SVcXoFl6MVGwRscZF9+XUyRcEncvrqGsVF6+kpgWvIzlMnXh/SeTO4lltxAmfO1eoCTCjKmHDP0Mw0662CC6QLBRmLwGLXEaQUZl4HXu5Jn9GWSz/SnO17rS3fck063d/ek2z/fm0md25dJnZvtTl2U7Wpb35sudce7+8AQ='">
+                        </div>
+                        <div class="address">
+                            <strong>Pole Star Defense</strong><br>
+                            450 8th Ave SE<br>
+                            St. Petersburg, FL 33701 USA
+                        </div>
+                    </div>
+
+                    <!-- Title -->
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h1 style="font-size: 14px; font-weight: bold; margin: 0 0 10px 0;">
+                            "Pole Star Defense – External Communication"
+                        </h1>
+                        <div style="font-size: 12px; margin: 0;" id="previewType">
+                            System Issue / Informational Report
+                        </div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="content" style="position: relative; z-index: 2;">
+                        <p style="margin: 0 0 12px 0;"><strong>Date:</strong> <span id="previewDate">[Date]</span></p>
+                        <p style="margin: 0 0 12px 0;"><strong>Subject:</strong> <span id="previewSubject">[Subject]</span></p>
+                        <p style="margin: 0 0 24px 0;"><strong>To:</strong> <span id="previewClient">[Client Name]</span></p>
+                        
+                        <p style="margin: 0 0 16px 0;">Dear <span id="previewClientName">[Client Name]</span>,</p>
+                        
+                        <p style="margin: 0 0 16px 0;">We would like to inform you about the following system update / issue / report:</p>
+                        
+                        <div id="previewContent" style="margin: 0 0 16px 0;">[Your message content will appear here]</div>
+                        
+                        <p style="margin: 0 0 24px 0;">We remain committed to transparency and operational excellence. Please contact us if you require further details or assistance.</p>
+
+                        <p style="margin: 0 0 6px 0;">Sincerely,</p>
+                        <p style="margin: 0 0 6px 0;">Pole Star Defense Team</p>
+                        <p style="margin: 0 0 24px 0;">
+                            <a href="mailto:Ops.Center@PoleStarDefense.com" style="color: #0066cc; text-decoration: underline;">
+                                Ops.Center@PoleStarDefense.com
+                            </a>
+                        </p>
+                    </div>
+                    
+                    <!-- Bottom Contact Footer -->
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background-color: #0a3b3a; color: white; font-size: 10px; padding: 8px;">
+                        <!-- Disclaimer -->
+                        <div style="text-align: center; margin-bottom: 8px; font-size: 9px;">
+                            This communication is confidential and intended solely for the recipient. © Pole Star Defense
+                        </div>
+                        
+                        <!-- Contact Table -->
+                        <table style="width: 100%; border-collapse: collapse; color: white;">
+                            <tr>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">UK +44 20 7313 7400</td>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">Hong Kong +852 2520 0951</td>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">Singapore +44 207 313 7403</td>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">Info.us@polestardefense.com</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">USA +1 727 610 9501</td>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">Panama +507 835 5150</td>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;"></td>
+                                <td style="border: 1px solid white; padding: 4px 6px; font-size: 9px;">www.polestardefense.com</td>
+                            </tr>
+                        </table>
+                        
+                        <!-- Registration Info -->
+                        <div style="text-align: center; margin-top: 4px; font-size: 8px;">
+                            Registered in Saint Petersburg, FL (Corp)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Button -->
+        <div class="text-center mt-8 no-print">
+            <button onclick="exportToPDF()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-200">
+                Export as PDF
+            </button>
+        </div>
+    </main>
+
+    <script>
+        // Set today's date by default
+        document.getElementById('emailDate').value = new Date().toISOString().split('T')[0];
+        
+        function updatePreview() {
+            const date = document.getElementById('emailDate').value;
+            const clientName = document.getElementById('clientName').value;
+            const subject = document.getElementById('subject').value;
+            const content = document.getElementById('content').value;
+            const includeWatermark = document.getElementById('includeWatermark').checked;
+            
+            // Update preview fields
+            document.getElementById('previewDate').textContent = date || '[Date]';
+            document.getElementById('previewSubject').textContent = subject || '[Subject]';
+            document.getElementById('previewClient').textContent = clientName || '[Client Name]';
+            document.getElementById('previewClientName').textContent = clientName || '[Client Name]';
+            document.getElementById('previewContent').innerHTML = content ? content.replace(/\n/g, '<br>') : '[Your message content will appear here]';
+            document.getElementById('previewType').textContent = document.getElementById('emailType').value;
+            
+            // Show/hide watermark
+            const watermark = document.getElementById('watermark');
+            if (includeWatermark) {
+                watermark.style.display = 'block';
+            } else {
+                watermark.style.display = 'none';
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('psd-email-data', JSON.stringify({
+                date, clientName, subject, content, includeWatermark
+            }));
+        }
+
+        // Load saved data
+        window.addEventListener('load', function() {
+            try {
+                const saved = localStorage.getItem('psd-email-data');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    if (data.date) document.getElementById('emailDate').value = data.date;
+                    if (data.clientName) document.getElementById('clientName').value = data.clientName;
+                    if (data.subject) document.getElementById('subject').value = data.subject;
+                    if (data.content) document.getElementById('content').value = data.content;
+                    if (data.includeWatermark) document.getElementById('includeWatermark').checked = data.includeWatermark;
+                    updatePreview();
+                }
+            } catch (e) {
+                // Ignore localStorage errors
+            }
+        });
+
+        function exportToPDF() {
+            window.print();
+        }
+
+        // Initial update
+        updatePreview();
+    </script>
+</body>
+</html>
